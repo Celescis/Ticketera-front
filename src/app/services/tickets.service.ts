@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TicketsService {
-  //private baseUrl = 'http://localhost:3000/api/tickets';
-  private baseUrl = 'https://ticketera-api.vercel.app/api/tickets';
+  private baseUrl = 'http://localhost:3000/api/tickets';
+  //private baseUrl = 'https://ticketera-api.vercel.app/api/tickets';
 
   constructor(private http: HttpClient) { }
 
@@ -83,10 +83,6 @@ export class TicketsService {
     return this.http.get(`${this.baseUrl}/exists`);
   }
 
-  traerTicketsType() {
-    return this.http.get(`${this.baseUrl}/type`);
-  }
-
   traerTicketsAll() {
     return this.http.get(`${this.baseUrl}/all`);
   }
@@ -98,4 +94,20 @@ export class TicketsService {
   traerTicketsSize() {
     return this.http.get(`${this.baseUrl}/size`);
   }
+
+  traerClientesDesperfectos() {
+    return this.http.get(`${this.baseUrl}/desperfectos`);
+  }
+
+  traerResponsablesTickets() {
+    return this.http.get(`${this.baseUrl}/unwindgroup`);
+  }
+
+  traerTicketsEmpleados() {
+    return this.http.get(`${this.baseUrl}/lookup`);
+  }
+
+
+
+
 }

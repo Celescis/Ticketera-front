@@ -1,12 +1,14 @@
 <section class="section-container">
   <div class="container">
     <div class="botones">
-      <div class="col-12">
-        <div class="btn-group-vertical ">
-          <button class="btn btn-dark mr-2" (click)="mostrarEstructuraConsulta()">Ver estructura</button>
+      <div class="col-12" style="padding: 0;">
+        <div class="btn-group-vertical">
+          <button class="btn btn-dark mr-2 " (click)="mostrarEstructuraConsulta()">Ver estructura</button>
+          <button class="btn btn-dark mr-2 " (click)="cargarTicketsTodos()">Traer Todos</button>
         </div>
       </div>
     </div>
+    
 
     <div class="respuesta">
       <div *ngIf="mostrarEstructura">

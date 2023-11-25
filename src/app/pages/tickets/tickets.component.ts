@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TicketsService } from 'src/app/services/tickets.service';
 @Component({
   selector: 'app-tickets',
   templateUrl: './tickets.component.html',
@@ -6,11 +7,11 @@ import { Component } from '@angular/core';
 })
 export class TicketsComponent {
   infoSeleccionada = '';
-  tickets: any[] = [];
   estructuraConsulta: any;
   mostrarEstructura = false;
+  tickets: any[] = [];
 
-  constructor() { }
+  constructor(private ticketService: TicketsService) { }
 
   //TICKET ESTRUCTURA
   mostrarEstructuraConsulta(): void {
@@ -23,8 +24,8 @@ export class TicketsComponent {
           email: "",
           telefonos: []
         },
-        localidad:{
-          codigoPostal:0,
+        localidad: {
+          codigoPostal: 0,
           descripcion: ""
         },
         ubicacion: {
@@ -43,11 +44,51 @@ export class TicketsComponent {
         esEmpleado: false
       },
       comentarioCliente: "",
-      infoTicket: [],
+      infoTicket: [{
+        fecha: "",
+        hora: "",
+        estado: "",
+        responsableTicket: {
+          nombre: "",
+          apellido: ""
+        },
+        motivo: ""
+      }],
       derivacion: {
-        historialDerivaciones: []
+        historialDerivaciones: [{
+          fecha: "2023-11-06",
+          hora: "",
+          departamento: "",
+          responsables: [
+            {
+              nombre: "",
+              apellido: "",
+              soluciones: [
+                {
+                  descripcion: "",
+                  exito: true
+                }
+              ],
+              ticketCerrado: true
+            }
+          ]
+        }]
       }
     };
+  }
+
+  cargarTicketsTodos(): void {
+    this.ticketService.traerTodos().subscribe(data => this.handleResponse(data), error => this.handleError(error));
+  }
+  
+  private handleResponse(data: any): void {
+    this.tickets = data;
+    this.infoSeleccionada = '';
+  }
+
+  private handleError(error: any): void {
+    console.error('Error al cargar tickets:', error);
+    this.infoSeleccionada = 'Error al cargar tickets.';
   }
 
   mostrarInfo(info: string) {

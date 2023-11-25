@@ -1,1 +1,25 @@
-<p>clientes works!</p>
+<section class="section-container">
+    <div class="container">
+        <div class="botones">
+            <div class="col-12" style="padding: 0;">
+                <div class="btn-group-vertical ">
+                    <button class="btn btn-dark mr-2" (click)="mostrarEstructuraConsulta()">Ver estructura</button>
+                    <button class="btn btn-dark mr-2" (click)="cargarClientesTodos()">Traer Todos</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="respuesta">
+            <div *ngIf="mostrarEstructura">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <h3>Estructura de Consulta:</h3>
+                            <pre>{{ estructuraConsulta | json }}</pre>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

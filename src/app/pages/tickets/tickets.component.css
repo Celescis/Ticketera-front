@@ -9,6 +9,9 @@ html, body {
   padding: 0;
   overflow: hidden;
 }
+.boton-largo {
+  width: 100%;
+}
 
 .container {
   display: flex;

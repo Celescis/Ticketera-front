@@ -12,10 +12,6 @@ export class HomeComponent {
 
   constructor(private ticketService: TicketsService) { }
 
-  cargarTicketsTodos(): void {
-    this.ticketService.traerTodos().subscribe(data => this.handleResponse(data), error => this.handleError(error));
-  }
-
   //OPERADORES
   cargarTicketsEq(): void {
     this.ticketService.traerTicketsEq().subscribe(data => this.handleResponse(data), error => this.handleError(error));
@@ -78,15 +74,11 @@ export class HomeComponent {
 
   //AGREGATION
   cargarTicketsText(): void {
-    this.ticketService.traerTicketsGeoIntersects().subscribe(data => this.handleResponse(data), error => this.handleError(error));
+    this.ticketService.traerTicketsText().subscribe(data => this.handleResponse(data), error => this.handleError(error));
   }
 
   cargarTicketsExists(): void {
     this.ticketService.traerTicketsExists().subscribe(data => this.handleResponse(data), error => this.handleError(error));
-  }
-
-  cargarTicketsType(): void {
-    this.ticketService.traerTicketsType().subscribe(data => this.handleResponse(data), error => this.handleError(error));
   }
 
   cargarTicketsAll(): void {
@@ -100,6 +92,19 @@ export class HomeComponent {
   cargarTicketsSize(): void {
     this.ticketService.traerTicketsSize().subscribe(data => this.handleResponse(data), error => this.handleError(error));
   }
+
+  cargarTicketsDesperfectos(): void {
+    this.ticketService.traerClientesDesperfectos().subscribe(data => this.handleResponse(data), error => this.handleError(error));
+  }
+
+  cargarResponsablesTickets(): void {
+    this.ticketService.traerResponsablesTickets().subscribe(data => this.handleResponse(data), error => this.handleError(error));
+  }
+
+  cargarTicketsEmpleados(): void {
+    this.ticketService.traerTicketsEmpleados().subscribe(data => this.handleResponse(data), error => this.handleError(error));
+  }
+
 
   private handleResponse(data: any): void {
     this.tickets = data;
