@@ -10,7 +10,7 @@ export class ClientesComponent {
   infoSeleccionada = '';
   estructuraConsulta: any;
   mostrarEstructura = false;
-  tickets: any[] = [];
+  clientes: any[] = [];
 
   constructor(private clienteService: ClientesService) { }
 
@@ -52,7 +52,8 @@ export class ClientesComponent {
   }
 
   private handleResponse(data: any): void {
-    this.tickets = data;
+    this.mostrarEstructura = false;
+    this.clientes = data;
     this.infoSeleccionada = '';
   }
 

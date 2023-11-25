@@ -82,6 +82,7 @@ export class TicketsComponent {
   }
   
   private handleResponse(data: any): void {
+    this.mostrarEstructura = false;
     this.tickets = data;
     this.infoSeleccionada = '';
   }

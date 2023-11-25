@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    
+
 
     <div class="respuesta">
       <div *ngIf="mostrarEstructura">
@@ -18,6 +18,59 @@
               <h3>Estructura de Consulta:</h3>
               <pre>{{ estructuraConsulta | json }}</pre>
             </h5>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!mostrarEstructura">
+
+        <div id="accordion">
+          <div class="card" *ngFor="let ticket of tickets; let i = index">
+            <div class="card-header" id="heading{{i}}">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapse' + i"
+                  aria-expanded="true" [attr.aria-controls]="'collapse' + i">
+                  Ticket {{ i + 1 }}: {{ ticket.cliente.nombre }} {{ ticket.cliente.apellido }}
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapse{{i}}" class="collapse" [attr.aria-labelledby]="'heading' + i" data-parent="#accordion">
+              <div class="card-body">
+                <p>Email: {{ ticket.cliente.contacto.email }}</p>
+                <p>Teléfonos: <span *ngFor="let telefono of ticket.cliente.contacto.telefonos; let last = last">
+                    {{ telefono }}<span *ngIf="!last"> / </span>
+                  </span></p>
+                <p>Coordenadas: Latitud {{ ticket.cliente.ubicacion.geolocalizacion.coordinates[1] }},
+                  Longitud {{ ticket.cliente.ubicacion.geolocalizacion.coordinates[0] }}</p>
+                <p>Plan: {{ ticket.cliente.plan.nombre }}</p>
+                <ul>
+                  <li *ngFor="let canal of ticket.cliente.plan.canales">{{ canal }}</li>
+                </ul>
+                <p>Comentario Cliente: {{ ticket.comentarioCliente }}</p>
+                <p>Es Empleado?: {{ ticket.cliente.esEmpleado ? 'Sí' : 'No' }}</p>
+                <div *ngFor="let info of ticket.infoTicket">
+                  <p>Fecha: {{ info.fecha | date: 'dd/MM/yyyy' }}, Hora: {{ info.hora }}</p>
+                  <p>Estado: {{ info.estado }}</p>
+                  <p>Motivo: {{ info.motivo }}</p>
+                  <p>Responsable Ticket: {{ info.responsableTicket.nombre }} {{
+                    info.responsableTicket.apellido }}</p>
+                </div>
+                <div *ngFor="let derivacion of ticket.derivacion.historialDerivaciones">
+                  <p>Derivación Fecha: {{ derivacion.fecha | date: 'dd/MM/yyyy' }}, Hora: {{
+                    derivacion.hora }}</p>
+                  <p>Departamento: {{ derivacion.departamento }}</p>
+                  <div *ngFor="let responsable of derivacion.responsables">
+                    <p>Responsable: {{ responsable.nombre }} {{ responsable.apellido }}</p>
+                    <ul>
+                      <li *ngFor="let solucion of responsable.soluciones">
+                        Solución: {{ solucion.descripcion }}, Éxito: {{ solucion.exito ? 'Sí' :
+                        'No' }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

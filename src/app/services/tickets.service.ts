@@ -6,13 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TicketsService {
-  private baseUrl = 'http://localhost:3000/api/tickets';
-  //private baseUrl = 'https://ticketera-api.vercel.app/api/tickets';
+  //private baseUrl = 'http://localhost:3000/api/tickets';
+  private baseUrl = 'https://ticketera-api.vercel.app/api/tickets';
 
   constructor(private http: HttpClient) { }
 
   traerTodos(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/`);
+    return this.http.get(`${this.baseUrl}/todosT`);
   }
 
   traerTicketsEq(): Observable<any> {
