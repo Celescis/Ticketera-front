@@ -88,6 +88,7 @@ export class TicketsComponent {
   }
 
   private handleError(error: any): void {
+    this.mostrarEstructura = false;
     console.error('Error al cargar tickets:', error);
     this.infoSeleccionada = 'Error al cargar tickets.';
   }

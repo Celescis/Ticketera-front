@@ -12,7 +12,7 @@ export class TicketsService {
   constructor(private http: HttpClient) { }
 
   traerTodos(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/todosT`);
+    return this.http.get(`${this.baseUrl}/`);
   }
 
   traerTicketsEq(): Observable<any> {

@@ -12,8 +12,7 @@ export class ClientesService {
   constructor(private http: HttpClient) { }
 
   traerTodos(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/todosC`);
+    return this.http.get(`${this.baseUrl}/`);
   }
 
-  
 }
